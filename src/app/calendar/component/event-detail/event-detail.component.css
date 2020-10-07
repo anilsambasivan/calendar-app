@@ -1,0 +1,48 @@
+.calendar-add-event-container{
+  height: 100%;
+  flex-grow: 1;
+  flex-direction: column;
+  margin-left: 10px;
+  border-radius: 15px;
+  background-color: #232626;
+  border: 1px solid #393c3e;
+}
+
+.button-save {
+  height: 35px;
+  border-radius: 5px;
+  width: 50%;
+  border: 0;
+  font-family: Muli;
+  font-weight: bold;
+  color: #e4e6eb;
+  text-align: center;
+  background-color: #2d88ff;
+  margin-left: 5px;
+  margin-top: 5px;
+  cursor: pointer;
+  align-self: flex-end;
+}
+
+.button-clear {
+  width: 50%;
+  height: 35px;
+  font-weight: bold;
+  border-radius: 5px;
+  border: 0;
+  font-family: Muli;
+  color: #e4e6eb;
+  text-align: center;
+  background-color: #303132;
+  margin-right: 5px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+.field-group {
+  display: flex;
+}
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 10px;
+}

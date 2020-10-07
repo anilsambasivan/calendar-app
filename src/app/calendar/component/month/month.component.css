@@ -1,0 +1,26 @@
+.calendar-sheet-container{
+  height: 100%;
+  display: flex;
+  flex-grow: 8;
+  flex-direction: column;
+  border-left: 1px solid #373839;
+  border-top: 1px solid #373839;
+}
+
+/* day header */
+.row-header {
+  display: flex;
+  flex-grow: 0.05;
+}
+.column-header {
+  width: 14.287%;
+}
+.day-header {
+  height: 100%;
+  border-right: 1px solid #373839;
+  text-align: center;
+  padding-top: 10px;
+  font-size: 12px;
+}
+
+

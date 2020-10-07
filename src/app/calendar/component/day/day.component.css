@@ -1,0 +1,23 @@
+.column {
+  width: 14.287%;
+  height: 20%;
+  border: 1px solid #ffffff;
+}
+
+.other-day {
+  text-align: center;
+}
+
+.today {
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  background-color: #2d84f4;
+  text-align: center;
+  display: inline-block;
+  line-height: 32px;
+}
+
+.date-container {
+  width: 100%
+}

@@ -1,0 +1,79 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #18191a;
+}
+
+.right-arrow {
+  background: url(../../assets/right-arrow.svg);
+  background-size: 32px 32px;
+}
+.left-arrow {
+  background: url(../../assets/left-arrow.svg);
+  background-size: 32px 32px;
+}
+a:focus {
+  outline:0;
+}
+
+/* calendar section */
+.calendar-container {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  margin: 20px;
+}
+
+input[type=text] {
+  height: 50px;
+  border-radius: 5px;
+  border: 1px solid #393c3e;
+  font-family: Muli;
+  color: #e4e6eb;
+  text-align: left;
+  padding: 5px;
+  background-color: #232626;
+  outline: none;
+  font-weight: normal;
+  display: inline-block;
+  text-indent: 10px;
+  margin: 10px;
+  font-size: 14px;
+  width: 100%;
+}
+
+input[type=text]:hover {
+  border-color: #e3e6ea;
+}
+
+input[type=text]:focus {
+  border-color: #2d84f4;
+}
+
+textarea {
+  height: 200px;
+  width: 100%;
+  border-radius: 5px;
+  resize: none;
+  border: 1px solid #393c3e;
+  padding: 5px;
+  margin: 10px;
+  font-family: Muli;
+  font-size: 14px;
+  color: #e4e6eb;
+  text-align: left;
+  background-color: #232626;
+  outline: none;
+  font-weight: normal;
+  display: inline-block;
+  text-indent: 10px;
+}
+
+textarea:hover {
+  border-color: #e3e6ea;
+}
+
+textarea:focus {
+  border-color: #2d84f4;
+}

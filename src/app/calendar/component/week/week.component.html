@@ -1,0 +1,3 @@
+<ng-container *ngFor="let day of week.days">
+  <app-day (dayClicked)="onClick($event)" [day]="day" class="column day"></app-day>
+</ng-container>

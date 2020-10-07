@@ -1,0 +1,2 @@
+<span [ngClass]="{'today': day.today, 'other-day': !day.today}" (click)="onClick($event)">{{day.day | date:'dd'}}</span>
+<app-task></app-task>

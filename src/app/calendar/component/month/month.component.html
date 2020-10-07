@@ -1,0 +1,12 @@
+<div class="calendar-sheet-container">
+  <app-week-header></app-week-header>
+  <ng-container *ngFor="let week of month.weeks">
+    <app-week (onDayClick)="onClick($event)" [week]="week" class="row"></app-week>
+  </ng-container>
+  <!-- <app-week class="row"></app-week>
+  <app-week class="row"></app-week>
+  <app-week class="row"></app-week>
+  <app-week class="row"></app-week>
+  <app-week class="row"></app-week>
+  <app-week class="row"></app-week> -->
+</div>
