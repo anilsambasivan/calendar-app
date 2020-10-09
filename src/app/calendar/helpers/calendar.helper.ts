@@ -18,7 +18,7 @@ export class CalendarHelper {
         id: index,
         today: moment().isSame(moment(newDate), 'day'),
         selected: moment(newDate).isSame(moment(), 'day'),
-        day: newDate,
+        date: newDate,
       };
     });
   }

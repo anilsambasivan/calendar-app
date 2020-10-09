@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
-import { Month } from '../../models/calendar.model';
+import { Observable } from 'rxjs';
+import { Month, Task } from '../../models/calendar.model';
 
 @Component({
   selector: 'app-month',
@@ -9,6 +10,7 @@ import { Month } from '../../models/calendar.model';
 })
 export class MonthComponent implements OnInit {
   @Input() month: Month;
+  @Input() public tasks?: Task[];
   @Output() onDayClick = new EventEmitter();
 
   constructor() { }

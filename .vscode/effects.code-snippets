@@ -1,0 +1,181 @@
+{
+	// Place your calendar-app workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"scope": "javascript,typescript",
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+
+	"Calendar App Effect Template": {
+		"prefix": "#effect",
+		"body": [
+		  "import { Injectable } from '@angular/core';",
+		  "import { Actions, createEffect, ofType } from '@ngrx/effects';",
+		  "import * as CalendarActions from '../actions/calendar.actions'",
+		  "import { TaskService } from '../../services/task-service.service'",
+		  "import { map, switchMap } from 'rxjs/operators'",
+		  "",
+		  "@Injectable()",
+		  "export class CalendarEffects {",
+		  "",
+		  "    getTasks$ = createEffect(() => this.actions$.pipe(",
+		  "        ofType(CalendarActions.getTasks),",
+		  "        switchMap(() => this.service.getTasks()),",
+		  "        map((tasks) => {",
+		  "            return CalendarActions.getTasksSuccess({payload: tasks});",
+		  "        })",
+		  "    ));",
+		  "",
+		  "    constructor(private actions$: Actions, private service: TaskService) {}",
+		  "}",
+		  "",
+		  "export const calendarEffects: any[] = [CalendarEffects];"
+		],
+		"description": ""
+	},
+	"createReducer": {
+		"prefix": "#createReducer",
+		"body": [
+		  "export const reducer = createReducer(",
+		  "    initialState,",
+		  "    on([action], state => ({",
+		  "        ...state,",
+		  "        [stateToSet]: [value]",
+		  "    })),",
+		  ");"
+		],
+		"description": ""
+	},
+	"reducer": {
+		"prefix": "#reducer",
+		"body": [
+		  "import { createFeatureSelector, createReducer, on, State } from '@ngrx/store';",
+		  "import { Task } from '../../models/calendar.model';",
+		  "import * as TaskActions from '../actions/calendar.actions';",
+		  "",
+		  "export const initialState: CalendarState = {",
+		  "    tasks: [],",
+		  "    taskLoaded: false,",
+		  "    error: ''",
+		  "}",
+		  "",
+		  "export interface CalendarState {",
+		  "    tasks: Task[],",
+		  "    taskLoaded: boolean",
+		  "    error: string",
+		  "}",
+		  "export const calendarReducer = createReducer(",
+		  "    initialState,",
+		  "    on(TaskActions.getTasks, state => ({",
+		  "        ...state,",
+		  "        taskLoaded: false",
+		  "    })),",
+		  "    on(TaskActions.getTasksSuccess, (state, action )=> ({",
+		  "        ...state,",
+		  "        taskLoaded: true,",
+		  "        tasks: action.payload",
+		  "    })),",
+		  "    on(TaskActions.getTasksFailed, (state, action )=> ({",
+		  "        ...state,",
+		  "        taskLoaded: true,",
+		  "        error: action.payload",
+		  "    }))",
+		  ");",
+		  "",
+		  "export const getTasks = (state: CalendarState) => state.tasks; ",
+		  "export const getTasksLoaded = (state: CalendarState) => state.taskLoaded; ",
+		  "export const getTasksError = (state: CalendarState) => state.error; ",
+		  "",
+		  "export const getCalendarSate = createFeatureSelector<CalendarState>('calendar');",
+		  "",
+		  ""
+		],
+		"description": ""
+	  },
+	  "facade": {
+		"prefix": "#facade",
+		"body": [
+		  "import { Injectable } from '@angular/core';",
+		  "import { select, Store } from '@ngrx/store';",
+		  "import * as fromReducer from './reducers/calendar.reducers';",
+		  "import * as fromSelector from './selectors/calendar.selectors';",
+		  "import * as CalendarActions from './actions/calendar.actions';",
+		  "",
+		  "@Injectable({ providedIn: 'root' })",
+		  "export class CalendarFacade {",
+		  "    tasks$ = this.store.pipe(select(fromSelector.getTasks));",
+		  "",
+		  "    constructor(private store: Store<fromReducer.CalendarState>) {}",
+		  "",
+		  "    getTasks() {",
+		  "        this.store.dispatch(CalendarActions.getTasks());",
+		  "    } ",
+		  "}"
+		],
+		"description": ""
+	  },
+	  "selector": {
+		"prefix": "#selector",
+		"body": [
+		  "import { createSelector } from '@ngrx/store';",
+		  "import * as fromFeature from '../reducers/calendar.reducers';",
+		  "",
+		  "export const getTasks = createSelector(",
+		  "    fromFeature.getCalendarSate,",
+		  "    (state: fromFeature.CalendarState) => state.tasks",
+		  ")"
+		],
+		"description": ""
+	  },
+	  "service": {
+		"prefix": "#service",
+		"body": [
+		  "import { Injectable } from '@angular/core';",
+		  "import { Observable, of } from 'rxjs';",
+		  "import { TASKS } from '../constants/calendar.constants';",
+		  "import { Task } from '../models/calendar.model';",
+		  "",
+		  "@Injectable({",
+		  "  providedIn: 'root'",
+		  "})",
+		  "export class TaskService {",
+		  "",
+		  "  constructor() { }",
+		  "",
+		  "  getTasks(): Observable<Task[]> {",
+		  "    return of(TASKS);",
+		  "  }",
+		  "}",
+		  ""
+		],
+		"description": ""
+	  },
+	  "action": {
+		"prefix": "#action",
+		"body": [
+		  "import { createAction, props } from '@ngrx/store';",
+		  "import { Task } from '../../models/calendar.model';",
+		  "",
+		  "export const getTasks = createAction('[Task] - Get Tasks');",
+		  "export const getTasksSuccess = createAction(",
+		  "    '[Task] - Get Tasks Success',",
+		  "    props<{ payload: Task[] }>()",
+		  ");",
+		  "export const getTasksFailed = createAction(",
+		  "    '[Task] - Get Tasks Failed',",
+		  "    props<{ payload: string }>()",
+		  ");"
+		],
+		"description": ""
+	  }
+}

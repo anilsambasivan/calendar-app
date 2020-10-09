@@ -2,7 +2,7 @@ import * as moment from 'moment';
 
 export class Day {
   id: number;
-  day: moment.Moment;
+  date: moment.Moment;
   selected: boolean;
   today: boolean;
   tasks?: Task[];

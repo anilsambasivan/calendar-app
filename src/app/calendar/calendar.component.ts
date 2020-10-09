@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import * as moment from 'moment';
+import { Observable } from 'rxjs';
 import { CalendarHelper } from './helpers/calendar.helper';
-import { Month } from './models/calendar.model';
+import { Month, Task } from './models/calendar.model';
+import { CalendarFacade } from './store/calendar.facade';
 
 @Component({
   selector: 'app-calendar',
@@ -11,14 +13,22 @@ import { Month } from './models/calendar.model';
 })
 export class CalendarComponent implements OnInit {
   public month: Month;
+  public tasks$: Observable<Task[]>;
   public showTaskDetails: boolean;
   private currentDate: moment.Moment;
-  constructor() {
+  constructor(private service: CalendarFacade) {
     this.month = CalendarHelper.getCalendarMonth(moment(this.currentDate).subtract(0, 'months'));
-    console.log(this.month);
   }
 
   ngOnInit(): void {
+    this.service.getTasks();
+    this.tasks$ = this.service.tasks$;
+    this.tasks$ .subscribe((x) => {
+      console.log(x);
+    });
+    this.service.error$.subscribe((x) => {
+      console.log(x);
+    });
   }
 
   onClick(e: Event): void {

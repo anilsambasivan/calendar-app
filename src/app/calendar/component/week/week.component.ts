@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
-import { Week } from '../../models/calendar.model';
+import { Task, Week } from '../../models/calendar.model';
 
 @Component({
   selector: 'app-week',
@@ -9,6 +9,7 @@ import { Week } from '../../models/calendar.model';
 })
 export class WeekComponent implements OnInit {
   @Input() week: Week;
+  @Input() public tasks?: Task[];
   @Output() onDayClick = new EventEmitter();
 
   constructor() { }

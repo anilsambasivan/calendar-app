@@ -1,14 +1,14 @@
 <div class="calendar-add-event-container">
   <div class="field-group">
-      <input type="text" placeholder="Add title"/>
+      <input type="text" placeholder="Add title" [(ngModel)]="task.title"/>
   </div>
   <div class="field-group">
-      <input type="text" placeholder="October 2 2020"/>
-      <input type="text" placeholder="11:30 AM"/>
-      <input type="text" placeholder="12:00 PM"/>
+      <input type="text" placeholder="October 2 2020" [(ngModel)]="task.date"/>
+      <input type="text" placeholder="11:30 AM" [(ngModel)]="task.startTime"/>
+      <input type="text" placeholder="12:00 PM" [(ngModel)]="task.endTime"/>
   </div>
   <div class="field-group">
-      <textarea placeholder="Add description"></textarea>
+      <textarea [(ngModel)]="task.description" placeholder="Add description"></textarea>
   </div>
   <div class="button-group">
       <button class="button-save">Save</button>

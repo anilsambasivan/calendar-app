@@ -1,2 +1,4 @@
-<span [ngClass]="{'today': day.today, 'other-day': !day.today}" (click)="onClick($event)">{{day.day | date:'dd'}}</span>
-<app-task></app-task>
+<span [ngClass]="{'today': day.today, 'other-day': !day.today}" (click)="onClick($event)">{{day.date | date:'dd'}}</span>
+<ng-container *ngFor="let task of getTasksFortheDay()">
+    <app-task [task]="task"></app-task>
+</ng-container>
